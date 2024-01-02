@@ -99,7 +99,6 @@ extension APITests {
       XCTFail("The invoking should fail because JSON is malformed")
     } catch {
       XCTAssertEqual(error.localizedDescription, "The data couldn’t be read because it is missing.")
-//      XCTAssertEqual(error as? DecodingError, .keyNotFound("name", .init(codingPath: <#T##[CodingKey]#>, debugDescription: <#T##String#>)))
     }
   }
   func test_invoking_serverFailure() async throws {
