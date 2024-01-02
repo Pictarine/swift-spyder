@@ -3,7 +3,7 @@ import Foundation
 import FoundationNetworking
 #endif
 
-public protocol URLRequestBuilder {
+public protocol URLRequestBuilder: Sendable {
   static var method: HTTPMethod { get }
   static var path: String { get }
 }

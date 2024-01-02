@@ -1,5 +1,5 @@
 @propertyWrapper
-public struct RequestHeader {
+public struct RequestHeader: Sendable {
   let name: String
   public var wrappedValue = ""
 
@@ -9,7 +9,7 @@ public struct RequestHeader {
 }
 
 @propertyWrapper
-public struct PathArgument {
+public struct PathArgument: Sendable {
   let name: String
   public var wrappedValue = ""
 
@@ -19,7 +19,7 @@ public struct PathArgument {
 }
 
 @propertyWrapper
-public struct QueryArgument {
+public struct QueryArgument: Sendable {
   let name: String
   public var wrappedValue = ""
 
@@ -29,7 +29,7 @@ public struct QueryArgument {
 }
 
 @propertyWrapper
-public struct OptionalQueryArgument {
+public struct OptionalQueryArgument: Sendable {
   let name: String
   public var wrappedValue: String? = .none
 
@@ -39,7 +39,7 @@ public struct OptionalQueryArgument {
 }
 
 @propertyWrapper
-public struct Body {
+public struct Body: Sendable {
   public var wrappedValue: any Encodable
 
   public init(wrappedValue: any Encodable) {

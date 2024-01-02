@@ -1,4 +1,4 @@
-// swift-tools-version: 5.7
+// swift-tools-version: 5.9
 
 import PackageDescription
 
@@ -18,11 +18,13 @@ let package = Package(
   targets: [
     .target(
       name: "Spyder",
-      dependencies: []
+      dependencies: [],
+      swiftSettings: [.enableExperimentalFeature("StrictConcurrency")]
     ),
     .testTarget(
       name: "SpyderTests",
-      dependencies: ["Spyder"]
+      dependencies: ["Spyder"],
+      swiftSettings: [.enableExperimentalFeature("StrictConcurrency")]
     )
   ]
 )
