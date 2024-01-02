@@ -4,7 +4,7 @@ public enum HTTPMethod: String {
   case delete, get, post, put
 }
 
-public struct HTTPResponse: Equatable {
+public struct HTTPResponse: Sendable, Equatable {
   public let statusCode: Int
   public let headers: [Header]
   public let data: Data
@@ -16,7 +16,7 @@ public struct HTTPResponse: Equatable {
   }
 }
 
-public struct Header: Equatable, Hashable {
+public struct Header: Sendable, Equatable, Hashable {
   public let name: String
   public let value: String
 
