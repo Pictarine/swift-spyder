@@ -8,7 +8,7 @@ extension GitHubAPI {
     static var method: HTTPMethod = .get
     static var path: String = "/repositories"
   }
-  struct GetRepositoriesResponse: Decodable, Equatable {
+  struct GetRepositoriesResponse: Codable, Equatable {
     let name: String
   }
 

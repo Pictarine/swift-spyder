@@ -222,7 +222,7 @@ extension URLRequestBuilderTests {
   struct NoQueryNoPathBodyPostRequestExample: URLRequestBuilder {
     static let method: HTTPMethod = .post
     static let path: String = "/api/v1/postRequestExample"
-    @Body var value: any Sendable & Encodable
+    @Body var value: API.Object
     init(value: ContentBody) { self.value = value }
   }
 }
