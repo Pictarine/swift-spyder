@@ -5,6 +5,7 @@ import FoundationNetworking
 
 public class API<ConstrainedType> {
   public typealias HeadersBuilder = () -> Set<Header>
+  public typealias Object = Sendable & Codable
   public typealias Invoker = (URLRequest) async throws -> HTTPResponse
   public typealias Logger = (_ message: String, _ complementaryMessage: String) -> Void
   public typealias ResponseMiddleware = (API, HTTPResponse) async throws -> HTTPResponse

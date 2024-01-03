@@ -6,13 +6,12 @@ import FoundationNetworking
 // MARK: API invoking functions
 
 extension API {
-  public func invokeAndForget<Input>(request: Input) async throws
-  where Input: URLRequestBuilder {
+  public func invokeAndForget(request: URLRequestBuilder) async throws {
     let urlRequest = try request.urlRequest(for: self)
     try await invokeWithCacheCheck(urlRequest)
   }
-  public func invokeWaitingResponse<Input, Output>(request: Input) async throws -> Output
-  where Input: URLRequestBuilder, Output: Decodable {
+
+  public func invokeWaitingResponse<Output>(request: URLRequestBuilder) async throws -> Output where Output: Object {
     let urlRequest = try request.urlRequest(for: self)
     let responseData = try await invokeWithCacheCheck(urlRequest)
     return try decodeResponseData(responseData, from: urlRequest)
@@ -31,6 +30,7 @@ extension API {
     }
     return cachedResponseData
   }
+
   private func invokeUsingInvoker(_ urlRequest: URLRequest) async throws -> HTTPResponse {
     do {
       var response = try await invoker(urlRequest)
@@ -47,8 +47,8 @@ extension API {
       throw error
     }
   }
-  private func decodeResponseData<Output>(_ data: Data, from urlRequest: URLRequest) throws -> Output
-  where Output: Decodable {
+
+  private func decodeResponseData<Output: Object>(_ data: Data, from urlRequest: URLRequest) throws -> Output {
     do {
       return try jsonDecoder.decode(Output.self, from: data)
     } catch {
@@ -79,6 +79,7 @@ public enum Invoker {
     )
   }
 }
+
 extension Invoker {
   enum DefaultHTTPInvokerError: Swift.Error {
     case missingHTTPResponse
