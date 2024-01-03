@@ -11,7 +11,7 @@ extension API {
     try await invokeWithCacheCheck(urlRequest)
   }
 
-  public func invokeWaitingResponse<Output>(request: URLRequestBuilder) async throws -> Output where Output: Object {
+  public func invokeWaitingResponse<Output: Response>(request: URLRequestBuilder) async throws -> Output {
     let urlRequest = try request.urlRequest(for: self)
     let responseData = try await invokeWithCacheCheck(urlRequest)
     return try decodeResponseData(responseData, from: urlRequest)
@@ -48,7 +48,7 @@ extension API {
     }
   }
 
-  private func decodeResponseData<Output: Object>(_ data: Data, from urlRequest: URLRequest) throws -> Output {
+  private func decodeResponseData<Output: Response>(_ data: Data, from urlRequest: URLRequest) throws -> Output {
     do {
       return try jsonDecoder.decode(Output.self, from: data)
     } catch {
