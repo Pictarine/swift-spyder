@@ -4,9 +4,11 @@ import FoundationNetworking
 #endif
 
 public class API<ConstrainedType> {
+  public typealias Body = Sendable & Encodable
   public typealias HeadersBuilder = () -> Set<Header>
   public typealias Invoker = (URLRequest) async throws -> HTTPResponse
   public typealias Logger = (_ message: String, _ complementaryMessage: String) -> Void
+  public typealias Response = Sendable & Decodable
   public typealias ResponseMiddleware = (API, HTTPResponse) async throws -> HTTPResponse
 
   let baseURLComponents: URLComponents

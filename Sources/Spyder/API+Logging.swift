@@ -15,6 +15,7 @@ extension API {
       ].joined(separator: ", ")
     )
   }
+
   internal func logResponse(for urlRequest: URLRequest, response: HTTPResponse) {
     let isSuccess = (200...299).contains(response.statusCode)
     logNetworkingEvent(
@@ -22,6 +23,7 @@ extension API {
       message: "\(isSuccess ? "✅ success" : "❌ failure")[\(response.statusCode)]"
     )
   }
+
   internal func logInvocationFailure(for urlRequest: URLRequest, error: Swift.Error) {
     logNetworkingEvent(
       for: urlRequest,
@@ -29,6 +31,7 @@ extension API {
       complementaryMessage: String(reflecting: error)
     )
   }
+
   internal func logDecodingError(for urlRequest: URLRequest, error: Swift.Error) {
     logNetworkingEvent(
       for: urlRequest,

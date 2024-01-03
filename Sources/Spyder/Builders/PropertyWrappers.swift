@@ -40,9 +40,9 @@ public struct OptionalQueryArgument: Sendable {
 
 @propertyWrapper
 public struct Body: Sendable {
-  public var wrappedValue: any Encodable
+  public var wrappedValue: API.Body
 
-  public init(wrappedValue: any Encodable) {
+  public init(wrappedValue: API.Body) {
     self.wrappedValue = wrappedValue
   }
 }

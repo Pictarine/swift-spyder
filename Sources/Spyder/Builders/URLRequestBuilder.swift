@@ -56,17 +56,21 @@ extension URLRequestBuilder {
 private func updateHeaders(_ headers: inout Set<Header>, header: RequestHeader) {
   headers.insert(.init(name: header.name, value: header.wrappedValue))
 }
+
 private func updatePath(from path: String, argument: PathArgument) -> String {
   path.replacingOccurrences(of: "{\(argument.name)}", with: argument.wrappedValue)
 }
+
 private func updateQueryItems(_ queryItems: inout [URLQueryItem], argument: QueryArgument) {
   queryItems.append(URLQueryItem(name: argument.name, value: argument.wrappedValue))
 }
+
 private func updateQueryItems(_ queryItems: inout [URLQueryItem], argument: OptionalQueryArgument) {
   if let wrappedValue = argument.wrappedValue {
     queryItems.append(URLQueryItem(name: argument.name, value: wrappedValue))
   }
 }
+
 private func createBody(from content: Body, using encoder: JSONEncoder) throws -> Data? {
   try encoder.encode(content.wrappedValue)
 }
