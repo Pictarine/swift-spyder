@@ -39,7 +39,7 @@ public struct OptionalQueryArgument: Sendable {
 }
 
 @propertyWrapper
-public struct Body: Sendable {
+public struct BodyContent: Sendable {
   public var wrappedValue: API.Body
 
   public init(wrappedValue: API.Body) {

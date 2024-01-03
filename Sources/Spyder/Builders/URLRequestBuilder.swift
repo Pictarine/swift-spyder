@@ -29,7 +29,7 @@ extension URLRequestBuilder {
         updateQueryItems(&queryItems, argument: queryArgument)
       case let optionalQueryArgument as OptionalQueryArgument:
         updateQueryItems(&queryItems, argument: optionalQueryArgument)
-      case let body as Body:
+      case let body as BodyContent:
         httpBody = try createBody(from: body, using: api.jsonEncoder)
       default:
         break
@@ -71,6 +71,6 @@ private func updateQueryItems(_ queryItems: inout [URLQueryItem], argument: Opti
   }
 }
 
-private func createBody(from content: Body, using encoder: JSONEncoder) throws -> Data? {
+private func createBody(from content: BodyContent, using encoder: JSONEncoder) throws -> Data? {
   try encoder.encode(content.wrappedValue)
 }
